@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     borderColor: "#000080",
     borderWidth: 1,
-    marginTop: 15,
+    marginTop: 35,
   },
   googleButtonText: {
     marginLeft: 50,

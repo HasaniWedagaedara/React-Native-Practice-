@@ -1,15 +1,75 @@
-import { View, Text, StyleSheet,TouchableOpacity } from 'react-native';
+import React, { useState } from "react";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TextInput,
+  ImageBackground,
+  TouchableOpacity,
+  Image,
+} from "react-native";
+import { Link } from "expo-router";
+import Icon from "react-native-vector-icons/MaterialCommunityIcons";
+import GoogleButton from "@/components/googleButton";
+import SignButton from "@/components/signButtons";
 
-export default function DetailsScreen() {
+export default function SignUP() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const backgroundImageUrl =
+    "https://i.pinimg.com/originals/96/02/61/96026156d6f45c6cc09ef8d31e4599a7.jpg";
+  const [isPasswordVisible, setPasswordVisible] = useState(false);
+
   return (
     <View style={styles.container}>
-      <Text>Details</Text>
-        <TouchableOpacity
-        style={styles.button}
-        onPress={() => {}}
+      <ImageBackground
+        source={{ uri: backgroundImageUrl }}
+        resizeMode="cover"
+        style={styles.image}
       >
-        <Text style={styles.buttonText}>Sign Up</Text>
-      </TouchableOpacity>
+        <View style={styles.container2}>
+          <Text style={styles.login}>Welcome!🎉</Text>
+          <Text style={styles.text}>Sign Up to continue...</Text>
+
+          <View style={styles.form}>
+            <Text style={styles.label}>Email</Text>
+            <TextInput
+              style={styles.input}
+              placeholder="Email"
+              value={email}
+              onChangeText={setEmail}
+              keyboardType="email-address"
+              autoCapitalize="none"
+            />
+
+            <Text style={styles.label}>Password</Text>
+            <View style={styles.passwordContainer}>
+              <TextInput
+                style={styles.input}
+                placeholder="Password"
+                value={password}
+                onChangeText={setPassword}
+                secureTextEntry={!isPasswordVisible}
+              />
+              <TouchableOpacity
+                style={styles.icon}
+                onPress={() => setPasswordVisible(!isPasswordVisible)}
+              >
+                <Icon
+                  name={isPasswordVisible ? "eye" : "eye-off"}
+                  size={24}
+                  color="gray"
+                />
+              </TouchableOpacity>
+            </View>
+          </View>
+
+        <SignButton text="Sign Up" />
+
+          <GoogleButton />
+
+        </View>
+      </ImageBackground>
     </View>
   );
 }
@@ -17,19 +77,63 @@ export default function DetailsScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor:'white'
+    justifyContent: "flex-start",
+    alignItems: "center",
+    backgroundColor: "#f8f8ff",
   },
-  button: {
-    backgroundColor: '#000080',
-    paddingVertical: 12,
-    paddingHorizontal: 30,
-    borderRadius: 10,
+  container2: {
+    margin: 40,
+    flex: 1,
+    justifyContent: "flex-start",
+    alignItems: "center",
+    backgroundColor: "#f8f8ff",
+    width: "90%",
+    height: "50%",
+    padding: 20,
+    borderRadius: 20,
+    opacity: 0.9,
   },
-   buttonText: {
+  login: {
+    marginTop: 60,
+    fontSize: 40,
+    color: "#000080",
+  },
+  text: {
+    marginBottom: 30,
+    fontSize: 20,
+  },
+  form: {
+    width: "100%",
+    marginBottom: 20,
+  },
+  label: {
     fontSize: 18,
-    color: '#fff',
-    textAlign: 'center',
+    marginBottom: 4,
+    color: "#333",
+  },
+  input: {
+    height: 40,
+    width: "100%",
+    borderColor: "#000080",
+    borderWidth: 1,
+    borderRadius: 15,
+    marginBottom: 16,
+    paddingHorizontal: 8,
+    backgroundColor: "#fff",
+  },
+  image: {
+    flex: 1,
+    width: "100%",
+    justifyContent: "center",
+    resizeMode: "cover",
+    alignItems: "center",
+  },
+  icon: {
+    right: 35,
+    marginBottom: 12,
+  },
+  passwordContainer: {
+    flexDirection: "row",
+    alignItems: "center",
   },
 });

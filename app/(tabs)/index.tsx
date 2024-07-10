@@ -21,6 +21,7 @@ export default function HomeScreen() {
   const [isPasswordVisible, setPasswordVisible] = useState(false);
 
   return (
+       
     <View style={styles.container}>
       <ImageBackground
         source={{ uri: backgroundImageUrl }}
@@ -67,7 +68,9 @@ export default function HomeScreen() {
           <Link href="/details" style={styles.forgot}>
             Forgot Password?
           </Link>
+
           <SignButton text="Sign In"/>
+
           <GoogleButton />
 
           <Text style={styles.UserText}>
